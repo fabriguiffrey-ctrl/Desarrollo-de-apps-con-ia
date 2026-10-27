@@ -1,0 +1,332 @@
+.page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(1.25rem, 4vw, 3.5rem) clamp(1rem, 4vw, 2rem);
+}
+
+.card {
+  display: grid;
+  gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  width: min(46rem, 100%);
+  padding: clamp(1.35rem, 4vw, 2.75rem);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: card-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes card-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.card__toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-btn,
+.ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.icon-btn {
+  width: 2.75rem;
+  padding: 0;
+}
+
+.ghost-btn {
+  padding: 0.6rem 1rem;
+}
+
+.icon-btn:hover,
+.ghost-btn:hover {
+  color: var(--color-text-strong);
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+}
+
+.icon-btn:active,
+.ghost-btn:active {
+  transform: translateY(1px);
+}
+
+.icon-btn svg,
+.ghost-btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .icon-sun {
+  display: block;
+}
+
+[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .icon-sun {
+  display: none;
+}
+
+[data-theme="light"] .icon-moon {
+  display: block;
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 3.5vw, 1.75rem);
+}
+
+.avatar {
+  width: clamp(5rem, 16vw, 7rem);
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.25rem var(--color-accent-soft);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.identity h1 {
+  margin-top: 0.35rem;
+  font-size: clamp(2.25rem, 7vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: var(--color-text-strong);
+}
+
+.role {
+  margin-top: 0.6rem;
+  font-size: clamp(0.95rem, 2.2vw, 1.125rem);
+  font-weight: 600;
+  color: var(--color-accent-ink);
+}
+
+.card__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.card__details .section {
+  flex: 1 1 15rem;
+  min-width: 0;
+  padding-top: clamp(1rem, 2.5vw, 1.5rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.card__details .bio {
+  flex-grow: 1.6;
+}
+
+.section h2 {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.bio p {
+  margin-top: 0.75rem;
+  max-width: 38ch;
+}
+
+.interests ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.interests li {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: clamp(1.1rem, 3vw, 1.75rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.9rem;
+  padding: 0.7rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.like-btn svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.like-btn:hover:not(:disabled) {
+  background: var(--color-accent-strong);
+}
+
+.like-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.like-btn:disabled {
+  color: var(--color-accent-ink);
+  background: var(--color-accent-soft);
+  border-color: var(--color-border-strong);
+}
+
+.like-btn:disabled svg {
+  fill: currentColor;
+}
+
+.like-count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.like-count strong {
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-strong);
+}
+
+@media (max-width: 640px) {
+  .card__toolbar {
+    justify-content: stretch;
+  }
+
+  .card__actions {
+    width: 100%;
+  }
+
+  .ghost-btn {
+    flex: 1;
+  }
+
+  .identity {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .avatar {
+    width: 5.5rem;
+  }
+
+  [data-theme="light"] .identity h1 {
+    font-weight: 800;
+  }
+
+  [data-theme="light"] .role {
+    font-weight: 800;
+  }
+
+  [data-theme="light"] .eyebrow {
+    font-weight: 800;
+  }
+
+  [data-theme="light"] .section h2 {
+    font-weight: 800;
+  }
+
+  [data-theme="light"] .like-btn {
+    font-weight: 800;
+  }
+
+  [data-theme="light"] .like-count strong {
+    font-weight: 800;
+  }
+}

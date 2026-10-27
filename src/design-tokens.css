@@ -1,0 +1,51 @@
+:root {
+  color-scheme: dark;
+
+  --color-bg: #14161a;
+  --color-card: #1b1e24;
+  --color-surface: #22262d;
+  --color-text: #d8dbe0;
+  --color-text-strong: #f5f6f8;
+  --color-muted: #a3a9b3;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+
+  --color-accent: #c8f751;
+  --color-accent-strong: #b8eb3d;
+  --color-accent-ink: #c8f751;
+  --color-accent-soft: rgba(200, 247, 81, 0.12);
+  --color-on-accent: #11140b;
+  --color-focus: #c8f751;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radius-card: 1.5rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 2rem 4rem -3rem rgba(0, 0, 0, 0.9);
+  --transition: 180ms ease;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg: #eef0ea;
+  --color-card: #fafbf8;
+  --color-surface: #f1f3ed;
+  --color-text: #454b54;
+  --color-text-strong: #15181d;
+  --color-muted: #5c636d;
+  --color-border: rgba(21, 24, 29, 0.35);
+  --color-border-strong: rgba(21, 24, 29, 0.55);
+
+  --color-accent: #c8f751;
+  --color-accent-strong: #b8eb3d;
+  --color-accent-ink: #3d5600;
+  --color-accent-soft: rgba(94, 128, 0, 0.12);
+  --color-on-accent: #11140b;
+  --color-focus: #3d5600;
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 2rem 4rem -3rem rgba(21, 24, 29, 0.18);
+}

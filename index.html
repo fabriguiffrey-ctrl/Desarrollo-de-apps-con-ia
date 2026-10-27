@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#14161a" />
+    <meta name="description" content="Construyo experiencias digitales simples, rápidas y con personalidad. Me gusta aprender cosas nuevas y convertir ideas en productos reales." />
+    <title>Faber — Desarrollador Web · Creativo</title>
+    <script>
+      try {
+        const storedTheme = localStorage.getItem('mi-tarjeta-theme')
+        const theme = storedTheme === 'light' ? 'light' : 'dark'
+        document.documentElement.dataset.theme = theme
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute(
+            'content',
+            theme === 'light' ? '#eef0ea' : '#14161a',
+          )
+        }
+      } catch {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
