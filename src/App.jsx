@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import avatarImg from './assets/mifoto.jpeg'
 import './App.css'
 
-// COMENTARIO: Cambio 1 - Convertimos el botón "me gusta" en toggle "Seguir/Siguiendo"
 const INSTAGRAM_URL = 'https://www.instagram.com/fabriguiffrey'
 const WORK_URL = 'https://fabriguiffrey-ctrl.github.io/portfolio/'
 const INITIAL_LIKES = 128
@@ -10,21 +9,20 @@ const INITIAL_LIKES = 128
 const PROFILE = {
   name: 'Fabri',
   role: 'Desarrollador Web · Creativo',
-  bio: 'Construyo experiencias digitales simples, rápidas y con personalidad. Me gusta aprender cosas nuevas y convertir ideas en productos reales.',
+  bio:  'Construyo soluciones digitales simples, rápidas y con personalidad.',
   interests: [
-    'Desarrollo web',
-    'Inteligencia artificial',
-    'Diseño de interfaces',
+    'Apps',
+    'IA',
     'Open source',
-    'Café',
+    'Linux',
+    'Mate',
     'Música',
   ],
 }
 
 const THEME_KEY = 'mi-tarjeta-theme'
 const LIKES_KEY = 'mi-tarjeta-likes'
-// COMENTARIO: Cambio 1 - Usamos una key nueva para guardar estado "siguiendo" (se puede reutilizar LIKED_KEY pero lo renombro para claridad)
-const FOLLOWING_KEY = 'mi-tarjeta-following'
+const LIKED_KEY = 'mi-tarjeta-liked'
 
 function readStorage(key) {
   try {
@@ -53,16 +51,14 @@ function getInitialLikes() {
     : INITIAL_LIKES
 }
 
-// COMENTARIO: Cambio 1 - Leemos si ya estamos siguiendo desde localStorage
-function getInitialFollowing() {
-  return readStorage(FOLLOWING_KEY) === 'true'
+function getInitialLiked() {
+  return readStorage(LIKED_KEY) === 'true'
 }
 
 function App() {
   const [theme, setTheme] = useState(getInitialTheme)
   const [likes, setLikes] = useState(getInitialLikes)
-  // COMENTARIO: Cambio 1 - Renombramos estado: ahora es "siguiendo" (toggle)
-  const [isFollowing, setIsFollowing] = useState(getInitialFollowing)
+  const [isLiked, setIsLiked] = useState(getInitialLiked)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -84,23 +80,21 @@ function App() {
     })
   }
 
-  // COMENTARIO: Cambio 1 - Ahora es toggle: seguir/siguiendo
-  // Al seguir sumamos 1 like, al dejar de seguir restamos 1 like
-  const handleFollow = () => {
-    if (isFollowing) {
+  const handleLike = () => {
+    if (isLiked) {
       const nextLikes = likes - 1
       setLikes(nextLikes)
-      setIsFollowing(false)
+      setIsLiked(false)
       writeStorage(LIKES_KEY, String(nextLikes))
-      writeStorage(FOLLOWING_KEY, 'false')
+      writeStorage(LIKED_KEY, 'false')
       return
     }
 
     const nextLikes = likes + 1
     setLikes(nextLikes)
-    setIsFollowing(true)
+    setIsLiked(true)
     writeStorage(LIKES_KEY, String(nextLikes))
-    writeStorage(FOLLOWING_KEY, 'true')
+    writeStorage(LIKED_KEY, 'true')
   }
 
   return (
@@ -144,9 +138,8 @@ function App() {
                 className="ghost-btn"
                 href={INSTAGRAM_URL}
                 target="_blank"
-                rel="me noopener noreferrer"
+                rel="noopener noreferrer"
               >
-                {/* COMENTARIO: Cambio 3 - Cambiamos texto del botón */}
                 <span>Seguir en Instagram</span>
                 <span className="screen-reader-text">
                   (se abre en una pestaña nueva)
@@ -160,9 +153,9 @@ function App() {
                 className="ghost-btn"
                 href={WORK_URL}
                 target="_blank"
-                rel="me noopener noreferrer"
+                rel="noopener noreferrer"
               >
-                <span>{'work!<'}</span>
+                <span>Work!</span>
                 <span className="screen-reader-text">
                   (se abre en una pestaña nueva)
                 </span>
@@ -177,8 +170,7 @@ function App() {
               alt={`Avatar de ${PROFILE.name}`}
               width="112"
               height="112"
-              fetchPriority="high"
-              decoding="async"
+fetchPriority="high"
             />
             <div>
               <p className="eyebrow">Hola, soy</p>
@@ -204,17 +196,16 @@ function App() {
           </div>
 
           <footer className="card__footer">
-            {/* COMENTARIO: Cambio 2 - Volvemos a "Me gusta" / "Ya me gusta" con toggle */}
             <button
               type="button"
               className="like-btn"
-              aria-pressed={isFollowing}
-              onClick={handleFollow}
+              aria-pressed={isLiked}
+              onClick={handleLike}
             >
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M12 21s-7.5-4.6-9.7-9A5.6 5.6 0 0 1 12 5.3 5.6 5.6 0 0 1 21.7 12c-2.2 4.4-9.7 9-9.7 9z" />
               </svg>
-              <span>{isFollowing ? 'Ya me gusta' : 'Me gusta'}</span>
+              <span>{isLiked ? 'Ya me gusta' : 'Me gusta'}</span>
             </button>
 
             <p className="like-count" aria-live="polite">

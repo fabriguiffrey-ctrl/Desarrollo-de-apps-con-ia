@@ -33,7 +33,7 @@ npm run preview  # Previsualizar la build de producción
 │   ├── design-tokens.css      # Tokens de color, tipografía y radios
 │   ├── index.css              # Reset, estilos globales y accesibilidad
 │   └── assets/
-│       └── avatar.svg
+│       └── mifoto.jpeg
 ├── AGENTS.md                  # Directrices de diseño y flujo de trabajo
 └── vite.config.js
 ```
